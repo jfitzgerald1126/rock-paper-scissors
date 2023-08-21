@@ -6,6 +6,23 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+function checkWinCondition() {
+    if (userScore === 5) alert(`You won ${userScore} to ${computerScore}`);
+    if (computerScore === 5) alert(`You lost ${computerScore} to ${userScore}`);
+}
+
+function updateScore(res) {
+    if (res === 'win') {
+        userScore++;
+    } else if (res === 'lose') {
+        computerScore++;
+    }
+    const score = document.querySelector('#container .score')
+    score.textContent = `Your score: ${userScore}-- Computer score: ${computerScore}`;
+
+    checkWinCondition();
+}
+
 function playOneRound(playerChoice, computerChoice) {
     playerChoice = playerChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
@@ -14,8 +31,10 @@ function playOneRound(playerChoice, computerChoice) {
     if (playerChoice === 'rock') {
         if (computerChoice === 'paper') {
             result.textContent = 'Result: You lose! Paper beats Rock';
+            updateScore('lose');
         } else if (computerChoice === 'scissors') {
             result.textContent = 'Result: You win! Rock beats Scissors';
+            updateScore('win');
         } else {
             result.textContent = 'Result: Tie, you both chose Rock';
         }
@@ -23,16 +42,20 @@ function playOneRound(playerChoice, computerChoice) {
     } else if (playerChoice === 'paper') {
         if (computerChoice === 'rock') {
             result.textContent = 'Result: You win! Paper beats Rock';
+            updateScore('win');
         } else if (computerChoice === 'scissors') {
             result.textContent = 'Result: You lose! Scissors beats Paper'
+            updateScore('lose');
         } else {
             result.textContent = 'Result: Tie, you both chose Paper';
         }
     } else {
         if (computerChoice === 'paper') {
             result.textContent = 'Result: You win! Scissors beats Paper';
+            updateScore('win');
         } else if (computerChoice === 'rock') {
             result.textContent = 'Result: You Lose! Rock beats Scissors';
+            updateScore('lose');
         } else {
             result.textContent = 'Result: Tie, you both chose Paper';
         }
@@ -70,6 +93,7 @@ container.appendChild(result);
 
 const score = document.createElement('div');
 score.textContent = `Your score: ${userScore}-- Computer score: ${computerScore}`;
+score.classList.add('score')
 container.appendChild(score);
 
 
