@@ -63,6 +63,7 @@ function updateChoices(playerChoice, computerChoice) {
             player.textContent = '✂️';
             break;
         default:
+            player.textContent = '▢'
             break;
     }
 
@@ -77,16 +78,73 @@ function updateChoices(playerChoice, computerChoice) {
             computer.textContent = '✂️';
             break;
         default:
+            computer.textContent = '▢';
             break;
     }
 }
 
+function isGameOver() {
+    return playerScore === 5 || computerScore === 5;
+}
+
+function displayOverlay() {
+    const overlay = document.querySelector('#game-over');
+    const text = document.querySelector('.game-over-text');
+    
+    // change text
+    if (playerScore > computerScore) {
+        text.textContent = `You win ${playerScore} to ${computerScore}! 🥇`;
+    } else {
+        text.textContent = `You lost ${computerScore} to ${playerScore}`;
+    }
+
+    overlay.style.display = 'flex';
+}
+
+function hideOverlay() {
+    const overlay = document.querySelector('#game-over');
+    overlay.style.display = 'none';
+}
+
+function resetResult() {
+    const resTitle = document.querySelector('#res-title');
+    const resText = document.querySelector('#res-text');
+
+    resTitle.textContent = 'Chose one...';
+    resText.textContent = 'First player to 5 points wins!';
+}
+
+function restartGame() {
+    playerScore = 0;
+    computerScore = 0;
+    updateScores();
+    updateChoices('', '');
+    hideOverlay();
+}
+    
 function handleClick(playerChoice) {
+    // check if there is a winner 
+    if (isGameOver()) {
+        displayOverlay();
+        return;
+    }
+
     const computerChoice = getComputerChoice();
     updateChoices(playerChoice, computerChoice);
     playRound(playerChoice, computerChoice);
+
+    if (isGameOver()) {
+        displayOverlay();
+    }
 }
 
+const overlay = document.querySelector('#game-over');
+overlay.addEventListener('click', hideOverlay);
+
+const restart = document.querySelector('.play-again');
+restart.addEventListener('click', restartGame);
+
+// game buttons
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
