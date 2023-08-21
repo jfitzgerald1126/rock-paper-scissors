@@ -1,3 +1,6 @@
+let userScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let choices = ['Rock', 'Paper', 'Scissors'];
     return choices[Math.floor(Math.random() * choices.length)];
@@ -6,70 +9,36 @@ function getComputerChoice() {
 function playOneRound(playerChoice, computerChoice) {
     playerChoice = playerChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
+    const result = document.querySelector('#container .result')
 
     if (playerChoice === 'rock') {
         if (computerChoice === 'paper') {
-            // return 'You lose! Paper beats Rock';
-            return 'win';
+            result.textContent = 'Result: You lose! Paper beats Rock';
         } else if (computerChoice === 'scissors') {
-            // return 'You win! Rock beats Scissors';
-            return 'loss';
+            result.textContent = 'Result: You win! Rock beats Scissors';
         } else {
-            return 'tie';
+            result.textContent = 'Result: Tie, you both chose Rock';
         }
 
     } else if (playerChoice === 'paper') {
         if (computerChoice === 'rock') {
-            // return 'You win! Paper beats Rock';
-            return 'win';
+            result.textContent = 'Result: You win! Paper beats Rock';
         } else if (computerChoice === 'scissors') {
-            // return 'You lose! Scissors beats Paper'
-            return 'loss';
+            result.textContent = 'Result: You lose! Scissors beats Paper'
         } else {
-            // return 'Tie!';
-            return 'tie';
+            result.textContent = 'Result: Tie, you both chose Paper';
         }
     } else {
         if (computerChoice === 'paper') {
-            // return 'You win! Scissors beats Paper';
-            return 'win';
+            result.textContent = 'Result: You win! Scissors beats Paper';
         } else if (computerChoice === 'rock') {
-            // return 'You Lose! Rock beats Scissors';
-            return 'loss';
+            result.textContent = 'Result: You Lose! Rock beats Scissors';
         } else {
-            // return 'Tie!';
-            return 'tie';
+            result.textContent = 'Result: Tie, you both chose Paper';
         }
     }
 }
 
-// function game() {
-//     let userScore = 0;
-//     let computerScore = 0;
-//     let result;
-//     for (i = 0; i < 5; i++) {
-//         userInput = prompt("Rock, Paper or Scissors?");
-//         computerChoice = getComputerChoice();
-//         result = playOneRound(userInput, computerChoice);
-//         if (result === 'win') {
-//             console.log('Win!')
-//             userScore++;
-//         } else if (result === 'loss') {
-//             console.log('Loss.')
-//             computerScore++;
-//         } else {
-//             console.log('Tie');
-//         }
-//     }
-
-//     if (userScore > computerScore) {
-//         console.log(`Congrats! You win ${userScore} to ${computerScore}.`);
-//     } else if (userScore < computerScore) {
-//         console.log(`You lost ${computerScore} to ${userScore}.`)
-//     } else {
-//         console.log('Tie game!')
-//     }
-// }
 const container = document.querySelector("#container")
 
 const rock = document.createElement('button');
@@ -83,4 +52,24 @@ container.appendChild(paper);
 const scissors = document.createElement('button');
 scissors.textContent = 'Scissors';
 container.appendChild(scissors);
+
+const buttons = document.querySelectorAll('#container button')
+buttons.forEach (button => {
+    button.addEventListener('click', e => {
+        playerChoice = button.textContent;
+        computerChoice = getComputerChoice();
+        console.log(playerChoice, computerChoice);
+        playOneRound(playerChoice, computerChoice);
+    });
+})
+
+const result = document.createElement('div');
+result.textContent = 'Result: '
+result.classList.add('result');
+container.appendChild(result);
+
+const score = document.createElement('div');
+score.textContent = `Your score: ${userScore}-- Computer score: ${computerScore}`;
+container.appendChild(score);
+
 
