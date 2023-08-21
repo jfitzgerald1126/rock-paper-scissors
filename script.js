@@ -1,118 +1,95 @@
-let userScore = 0;
+let playerScore = 0;
 let computerScore = 0;
+let winner = '';
 
 function getComputerChoice() {
-    let choices = ['Rock', 'Paper', 'Scissors'];
+    let choices = ['ROCK', 'PAPER', 'SCISSORS'];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function checkWinCondition() {
-    if (userScore === 5) {
-        setTimeout(() => {
-            alert(`You won ${userScore} to ${computerScore}`);
-            userScore = 0, computerScore = 0;
-            updateScoreDisplay();
-        }, 0)
-    }   
-    if (computerScore === 5) {
-        setTimeout(() => {
-            alert(`You lost ${computerScore} to ${userScore}`);
-            userScore = 0, computerScore = 0;
-            updateScoreDisplay();
-        }, 0)
-    };
-    return false;
-}
-
-function updateScoreDisplay() {
-    const score = document.querySelector('#container .score')
-    score.textContent = `Your score: ${userScore} -- Computer score: ${computerScore}`;
-}
-
-function updateScore(res) {
-    if (res === 'win') {
-        userScore++;
-    } else if (res === 'lose') {
-        computerScore++;
-    }
-    updateScoreDisplay();
-    checkWinCondition();
-    const score = document.querySelector('#container .score')
-}
-
-
-
-function playOneRound(playerChoice, computerChoice) {
-    playerChoice = playerChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
-    const result = document.querySelector('#container .result')
-
-    if (playerChoice === 'rock') {
-        if (computerChoice === 'paper') {
-            result.textContent = 'Result: You lose! Paper beats Rock';
-            updateScore('lose');
-        } else if (computerChoice === 'scissors') {
-            result.textContent = 'Result: You win! Rock beats Scissors';
-            updateScore('win');
-        } else {
-            result.textContent = 'Result: Tie, you both chose Rock';
-        }
-
-    } else if (playerChoice === 'paper') {
-        if (computerChoice === 'rock') {
-            result.textContent = 'Result: You win! Paper beats Rock';
-            updateScore('win');
-        } else if (computerChoice === 'scissors') {
-            result.textContent = 'Result: You lose! Scissors beats Paper'
-            updateScore('lose');
-        } else {
-            result.textContent = 'Result: Tie, you both chose Paper';
-        }
+function playRound(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        winner = 'tie';
+    } else if (
+        (playerChoice === 'ROCK' && computerChoice === 'SCISSORS') ||
+        (playerChoice === 'PAPER' && computerChoice === 'ROCK') ||
+        (playerChoice === 'SCISSORS' && computerChoice === 'PAPER')
+    ) {
+        // do something
+        playerScore++;
+        winner = 'player'
     } else {
-        if (computerChoice === 'paper') {
-            result.textContent = 'Result: You win! Scissors beats Paper';
-            updateScore('win');
-        } else if (computerChoice === 'rock') {
-            result.textContent = 'Result: You Lose! Rock beats Scissors';
-            updateScore('lose');
-        } else {
-            result.textContent = 'Result: Tie, you both chose Paper';
-        }
+        computerScore++;
+        winner = 'computer'
+    }
+    updateResult(winner, playerChoice, computerChoice);
+    updateScores();
+}
+
+function updateResult(winner, playerChoice, computerChoice) {
+    const resTitle = document.querySelector('#res-title');
+    const resText = document.querySelector('#res-text');
+    if (winner === 'player') {
+        resTitle.textContent = 'You win! 🏆';
+        resText.textContent = `${playerChoice} beats ${computerChoice}`
+    } else if (winner === 'computer') {
+        resTitle.textContent = 'You lose. 🤦'
+        resText.textContent = `${computerChoice} beats ${playerChoice}`
+    } else {
+        resTitle.textContent = 'Tie. 🥱';
+        resText.textContent = `Stalemate between ${playerChoice}`
     }
 }
 
-const container = document.querySelector("#container")
+function updateScores() {
+    const player = document.querySelector('#player-score');
+    const computer = document.querySelector('#computer-score');
+    player.textContent = `Player: ${playerScore}`;
+    computer.textContent = `Computer: ${computerScore}`;
+}
 
-const rock = document.createElement('button');
-rock.textContent = 'Rock'
-container.appendChild(rock);
+function updateChoices(playerChoice, computerChoice) {
+    const player = document.querySelector('#player-choice');
+    const computer = document.querySelector('#computer-choice');
 
-const paper = document.createElement('button');
-paper.textContent = 'Paper';
-container.appendChild(paper);
+    switch (playerChoice) {
+        case 'ROCK':
+            player.textContent = '🗿';
+            break;
+        case 'PAPER':
+            player.textContent = '📄';
+            break;
+        case 'SCISSORS':
+            player.textContent = '✂️';
+            break;
+        default:
+            break;
+    }
 
-const scissors = document.createElement('button');
-scissors.textContent = 'Scissors';
-container.appendChild(scissors);
+    switch (computerChoice) {
+        case 'ROCK':
+            computer.textContent = '🗿';
+            break;
+        case 'PAPER':
+            computer.textContent = '📄';
+            break;
+        case 'SCISSORS':
+            computer.textContent = '✂️';
+            break;
+        default:
+            break;
+    }
+}
 
-const buttons = document.querySelectorAll('#container button')
-buttons.forEach (button => {
-    button.addEventListener('click', e => {
-        playerChoice = button.textContent;
-        computerChoice = getComputerChoice();
-        console.log(playerChoice, computerChoice);
-        playOneRound(playerChoice, computerChoice);
-    });
-})
+function handleClick(playerChoice) {
+    const computerChoice = getComputerChoice();
+    updateChoices(playerChoice, computerChoice);
+    playRound(playerChoice, computerChoice);
+}
 
-const result = document.createElement('div');
-result.textContent = 'Result: '
-result.classList.add('result');
-container.appendChild(result);
-
-const score = document.createElement('div');
-score.textContent = `Your score: ${userScore}-- Computer score: ${computerScore}`;
-score.classList.add('score')
-container.appendChild(score);
-
-
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+rock.addEventListener('click', () => handleClick('ROCK'));
+paper.addEventListener('click', () => handleClick('PAPER'));
+scissors.addEventListener('click', () => handleClick('SCISSORS'));
