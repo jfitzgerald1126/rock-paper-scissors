@@ -43,31 +43,44 @@ function playOneRound(playerChoice, computerChoice) {
     }
 }
 
-    function game() {
-        let userScore = 0;
-        let computerScore = 0;
-        let result;
-        for (i = 0; i < 5; i++) {
-            userInput = prompt("Rock, Paper or Scissors?");
-            computerChoice = getComputerChoice();
-            result = playOneRound(userInput, computerChoice);
-            if (result === 'win') {
-                console.log('Win!')
-                userScore++;
-            } else if (result === 'loss') {
-                console.log('Loss.')
-                computerScore++;
-            } else {
-                console.log('Tie');
-            }
-        }
+// function game() {
+//     let userScore = 0;
+//     let computerScore = 0;
+//     let result;
+//     for (i = 0; i < 5; i++) {
+//         userInput = prompt("Rock, Paper or Scissors?");
+//         computerChoice = getComputerChoice();
+//         result = playOneRound(userInput, computerChoice);
+//         if (result === 'win') {
+//             console.log('Win!')
+//             userScore++;
+//         } else if (result === 'loss') {
+//             console.log('Loss.')
+//             computerScore++;
+//         } else {
+//             console.log('Tie');
+//         }
+//     }
 
-        if (userScore > computerScore) {
-            console.log(`Congrats! You win ${userScore} to ${computerScore}.`);
-        } else if (userScore < computerScore) {
-            console.log(`You lost ${computerScore} to ${userScore}.`)
-        } else {
-            console.log('Tie game!')
-        }
-    }
+//     if (userScore > computerScore) {
+//         console.log(`Congrats! You win ${userScore} to ${computerScore}.`);
+//     } else if (userScore < computerScore) {
+//         console.log(`You lost ${computerScore} to ${userScore}.`)
+//     } else {
+//         console.log('Tie game!')
+//     }
+// }
+const container = document.querySelector("#container")
+
+const rock = document.createElement('button');
+rock.textContent = 'Rock'
+container.appendChild(rock);
+
+const paper = document.createElement('button');
+paper.textContent = 'Paper';
+container.appendChild(paper);
+
+const scissors = document.createElement('button');
+scissors.textContent = 'Scissors';
+container.appendChild(scissors);
 
