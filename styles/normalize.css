@@ -1,0 +1,71 @@
+/* Reset and Normalize Styles */
+/*--------------------------------*/
+
+/* Apply a sensible box sizing in all browsers */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove default padding */
+p {
+  padding: 0;
+}
+
+/* Correct font family inheritance */
+html {
+  font-family: sans-serif;
+}
+
+/* Remove list styles on ul, ol elements */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Reset heading elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Set the default cursor for links */
+a {
+  cursor: pointer;
+}
+
+/* Remove underlines from links */
+a {
+  text-decoration: none;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Additional Normalize Rules */
+/*--------------------------------*/
+/* Add any additional normalize rules below if needed */
+
