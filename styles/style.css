@@ -111,6 +111,44 @@ footer {
   font-weight: bold;
 }
 
+.overlay {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.game-over-modal {
+  text-align: center;
+  padding: 60px;
+  border-radius: 5px;
+  background-color: #343a40;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.play-again {
+  color: #f8f9fa;
+  background-color: #495057;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.play-again:hover {
+  background-color: #868e96;
+}
+
+.play-again:active {
+  background-color: #adb5bd;
+}
+
 /* Adjust font size for smaller screens */
 @media (max-width: 657px) {
   .header {
