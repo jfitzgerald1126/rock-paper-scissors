@@ -8,13 +8,25 @@ function getComputerChoice() {
 
 function checkWinCondition() {
     if (userScore === 5) {
-        alert(`You won ${userScore} to ${computerScore}`)
-        userScore = 0, computerScore = 0;
-    }
+        setTimeout(() => {
+            alert(`You won ${userScore} to ${computerScore}`);
+            userScore = 0, computerScore = 0;
+            updateScoreDisplay();
+        }, 0)
+    }   
     if (computerScore === 5) {
-        alert(`You lost ${computerScore} to ${userScore}`)
-        userScore = 0, computerScore = 0;
+        setTimeout(() => {
+            alert(`You lost ${computerScore} to ${userScore}`);
+            userScore = 0, computerScore = 0;
+            updateScoreDisplay();
+        }, 0)
     };
+    return false;
+}
+
+function updateScoreDisplay() {
+    const score = document.querySelector('#container .score')
+    score.textContent = `Your score: ${userScore} -- Computer score: ${computerScore}`;
 }
 
 function updateScore(res) {
@@ -23,10 +35,12 @@ function updateScore(res) {
     } else if (res === 'lose') {
         computerScore++;
     }
-    const score = document.querySelector('#container .score')
+    updateScoreDisplay();
     checkWinCondition();
-    score.textContent = `Your score: ${userScore}-- Computer score: ${computerScore}`;
+    const score = document.querySelector('#container .score')
 }
+
+
 
 function playOneRound(playerChoice, computerChoice) {
     playerChoice = playerChoice.toLowerCase();
