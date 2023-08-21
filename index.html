@@ -7,9 +7,41 @@
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./styles/normalize.css">
     <link rel="stylesheet" href="./styles/style.css">
-    <script src="./script.js" defer></script>
+    <!-- <script src="./script.js" defer></script> -->
 </head>
 <body>
-    <div id="container"></div>
+    <div class="header">
+        <div class="title">Rock🗿 Paper📄 Scissors✂️</div>
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="result">
+                <div id="res-title">Chose one...</div>
+                <div id="res-text">First player to 5 points wins!</div>
+            </div>
+            <div class="scores">
+                <div class = "score-container" id="score1">
+                    <div class="choice" id="player-choice">▢</div>
+                    <div class="score" id="player-score">Player: 0</div>
+                </div>
+                <div class = "score-container" id="score2">
+                    <div class="choice" id="computer-choice">▢</div>
+                    <div class="score" id="computer-score">Computer: 0</div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn">🗿</button>
+                <button class="btn">📄</button>
+                <button class="btn">✂️</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-text">© 2023 jfitz1126</div>
+        <div class="github">
+            <a href="http://github.com/jfitzgerald1126" target=”_blank” alt="GitHub logo"> <img src="./img/github.png" alt="GitHub logo" class="github-link"></a>
+        </div>
+    </footer>
+         
 </body>
 </html>
