@@ -101,7 +101,6 @@ footer {
 }
 
 .github-link {
-  /* color: #868e96; */
   text-decoration: none;
   height: 22px;
   width: auto;
@@ -152,6 +151,11 @@ footer {
 /* Adjust font size for smaller screens */
 @media (max-width: 657px) {
   .header {
-    font-size: 34px;
+    font-size: 25px;
+  }
+
+  .btn {
+    width: 100px;
+    height: 100px;
   }
 }
