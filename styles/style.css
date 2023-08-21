@@ -67,7 +67,9 @@ html, body {
 }
 
 .btn {
-  text-align: center;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
   width: 150px;
   height: 150px;
   border-radius: 10px;
