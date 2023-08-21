@@ -1,0 +1,119 @@
+@font-face {
+  font-family: 'Blomberg';
+  src: url('../fonts/Blomberg-8MKKZ.otf');
+}
+
+html, body {
+  height: 85%;
+}
+
+body {
+  background-color: #343a40;
+}
+
+.header {
+  background-color: #212529;
+  text-align: center;
+  padding: 30px;
+  color: #f8f9fa;
+  font-family: 'Blomberg', sans-serif;
+  font-size: 48px;
+}
+
+.wrapper {
+  min-height: 570px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.result {
+  /* padding-top: 40px; */
+  text-align: center;
+}
+
+#res-title {
+  color: #f8f9fa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#res-text, .score-container {
+  color: #ced4da;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.score-container {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.choice {
+  font-size: 60px;
+}
+
+.buttons {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  border: none;
+  font-size: 60px;
+  background-color: #868e96;
+}
+
+.btn:hover {
+  background-color: #adb5bd;
+}
+
+.btn:active {
+  background-color: #ced4da;
+  border: 2px solid black;
+}
+
+footer {
+  background-color: #212529;
+  font-size: 16px;
+  color: #868e96;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.github-link {
+  /* color: #868e96; */
+  text-decoration: none;
+  height: 22px;
+  width: auto;
+}
+
+.copyright {
+  font-weight: bold;
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 657px) {
+  .header {
+    font-size: 34px;
+  }
+}
