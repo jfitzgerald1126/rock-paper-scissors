@@ -119,6 +119,7 @@ function restartGame() {
     computerScore = 0;
     updateScores();
     updateChoices('', '');
+    resetResult();
     hideOverlay();
 }
     
